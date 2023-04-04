@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <div className="p-5 border-b fixed w-full">
       <NavigationMenu.Root className="relative z-[1] ">
-        <NavigationMenu.List className="flex">
+        <NavigationMenu.List className="flex justify-center">
           <NavigationMenu.Item>
             <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
               Features{" "}
@@ -92,7 +92,7 @@ export const Navbar = () => {
           </NavigationMenu.Indicator>
         </NavigationMenu.List>
 
-        <div className="absolute top-full left-0 flex w-full">
+        <div className="absolute top-full left-0 flex w-full justify-center ">
           <NavigationMenu.Viewport className="rounded-2xl data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden bg-[#1e1e1e] border border-white border-opacity-30 transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
         </div>
       </NavigationMenu.Root>

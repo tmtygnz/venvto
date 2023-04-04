@@ -8,7 +8,9 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />{" "}
+      <div className="animate-fadeIn">
+        <Component {...pageProps} />
+      </div>
     </SessionProvider>
   );
 }

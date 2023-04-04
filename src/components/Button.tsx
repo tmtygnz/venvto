@@ -11,7 +11,7 @@ export const Button = (props: Props) => {
   return (
     <button
       {...buttonProps}
-      className={`px-3 py-1 border rounded-lg font-bold hover:bg-white hover:bg-opacity-10 transition w-full ${props.className}`}
+      className={`px-3 py-1 border rounded-lg font-bold hover:bg-white hover:bg-opacity-10 transition ${props.className}`}
       ref={ref}
     >
       {props.children}
