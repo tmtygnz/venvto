@@ -30,18 +30,15 @@ export const Navbar = () => {
                 src={session.data?.user?.image!}
                 alt={session.data?.user?.name!}
               />
-              <Avatar.Fallback
-                className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"
-                delayMs={1000}
-              >
-                {session.data?.user?.name!}
+              <Avatar.Fallback className="h-8 font-semibold items-center flex w-8 justify-center" delayMs={1000}>
+                ER
               </Avatar.Fallback>
             </Avatar.Root>
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Portal>
             <DropdownMenu.Content
-              className="min-w-[200px] gap-2 bg-black text-sm font-semibold bg-opacity-25 p-2 rounded-lg mr-2 shadow will-change-[opacity,transform] data-[side=top]:animate-fadeIn data-[side=right]:animate-fadeIn data-[side=bottom]:animate-fadeIn data-[side=left]:animate-fadeIn animate-scaleIn"
+              className="min-w-[200px] gap-2 bg-black text-sm font-semibold bg-opacity-25 backdrop-blur-sm p-2 rounded-lg mr-2 shadow will-change-[opacity,transform] data-[side=top]:animate-fadeIn data-[side=right]:animate-fadeIn data-[side=bottom]:animate-fadeIn data-[side=left]:animate-fadeIn animate-scaleIn"
               sideOffset={7}
             >
               <DropDownItem>

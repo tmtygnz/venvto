@@ -3,9 +3,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Cabinet Grotesk"],
+        sans: ["Satoshi"],
       },
       keyframes: {
+        shake: {
+          "0%": { transform: "rotate(45deg)" },
+          "50%": { transform: "rotate(-45deg)" },
+          "0%": { transform: "rotate(45deg)" },
+        },
         enterFromRight: {
           from: { opacity: 0, transform: "translateX(200px)" },
           to: { opacity: 1, transform: "translateX(0)" },
@@ -41,6 +46,7 @@ module.exports = {
       },
     },
     animation: {
+      shake: "shake 1000ms ease",
       scaleIn: "scaleIn 200ms ease",
       scaleOut: "scaleOut 200ms ease",
       fadeIn: "fadeIn 200ms ease",
