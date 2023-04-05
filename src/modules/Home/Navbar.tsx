@@ -66,8 +66,8 @@ export const Navbar = () => {
                     </div>
                     <span className="opacity-50 text-sm">
                       Our JavaScript SDK allows developers to easily integrate
-                      our app's features and functionality into their own web
-                      applications.
+                      our app&apos;s features and functionality into their own
+                      web applications.
                     </span>
                   </div>
                   <div className="px-3 py-3 hover:bg-black hover:bg-opacity-10 flex w-full flex-col rounded-xl transition">
