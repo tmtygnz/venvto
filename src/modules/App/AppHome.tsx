@@ -4,6 +4,7 @@ import { PlusIcon, TrashIcon, ValueNoneIcon } from "@radix-ui/react-icons";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useSession } from "next-auth/react";
 import { CreatedEvents } from "./CreatedEvents";
+import { FYP } from "./FYP";
 
 export const AppHome = () => {
   const session = useSession();
@@ -26,7 +27,7 @@ export const AppHome = () => {
             </div>
           </Button>
         </div>
-        <Tabs.Root className="w-full flex flex-col h-full">
+        <Tabs.Root className="w-full flex flex-col h-full" defaultValue="crtd">
           <Tabs.List className="flex font-semibold gap-7">
             <Tabs.Trigger
               value="crtd"
@@ -41,8 +42,17 @@ export const AppHome = () => {
               Joined Events
             </Tabs.Trigger>
           </Tabs.List>
-          <Tabs.TabsContent value="crtd" className="w-full h-full">
+          <Tabs.TabsContent
+            value="crtd"
+            className="w-full h-full data-[state=active]:animate-scaleIn"
+          >
             <CreatedEvents />
+          </Tabs.TabsContent>
+          <Tabs.TabsContent
+            value="fyp"
+            className="w-full h-full data-[state=active]:animate-scaleIn"
+          >
+            <FYP />
           </Tabs.TabsContent>
         </Tabs.Root>
       </div>
