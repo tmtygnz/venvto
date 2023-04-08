@@ -5,7 +5,10 @@ import { ExitIcon, GearIcon, PersonIcon } from "@radix-ui/react-icons";
 import { Session } from "inspector";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { RefAttributes } from "react";
+import { RefAttributes, useRef } from "react";
+import * as Popover from "@radix-ui/react-popover";
+import Image from "next/image";
+import { AriaButtonProps, useButton } from "@react-aria/button";
 
 export const Navbar = () => {
   const session = useSession();
@@ -16,62 +19,53 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="p-3 w-full flex justify-between items-center animate-fadeIn fixed">
+    <div className="pt-5 px-5 w-full flex justify-between items-center animate-fadeIn fixed">
       <div className="flex h-full gap-2 items-center">
         <Logo className="h-10 w-10" />
         <span className="text-xl font-bold text-[#8e8e8e]">Venvto</span>
       </div>
       <div className="flex h-full gap-2 items-center bg-white bg-opacity-5 p-1 rounded-full">
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <Avatar.Root className="rounded-full h-8 ">
-              <Avatar.Image
-                className="h-full w-full rounded-[inherit] object-cover"
-                src={session.data?.user?.image!}
-                alt={session.data?.user?.name!}
-              />
-              <Avatar.Fallback className="h-8 font-semibold items-center flex w-8 justify-center" delayMs={1000}>
-                ER
-              </Avatar.Fallback>
-            </Avatar.Root>
-          </DropdownMenu.Trigger>
-
-          <DropdownMenu.Portal>
-            <DropdownMenu.Content
-              className="min-w-[200px] gap-2 bg-black text-sm font-semibold bg-opacity-25 backdrop-blur-sm p-2 rounded-lg mr-2 shadow will-change-[opacity,transform] data-[side=top]:animate-fadeIn data-[side=right]:animate-fadeIn data-[side=bottom]:animate-fadeIn data-[side=left]:animate-fadeIn animate-scaleIn"
-              sideOffset={7}
+        <Popover.Root>
+          <Popover.Trigger asChild>
+            <Image
+              src={session.data?.user?.image!}
+              alt="something"
+              width={32}
+              height={32}
+              className="h-[32px] w-[32px] rounded-full"
+            />
+          </Popover.Trigger>
+          <Popover.Portal>
+            <Popover.Content
+              sideOffset={5}
+              className="min-w-[200px] border rounded-lg bg-[#111111] shadow-md border-white border-opacity-20 py-1 mt-1 mr-3"
             >
-              <DropDownItem>
-                Profile
-                <PersonIcon />
-              </DropDownItem>
-
-              <DropDownItem>
-                Settings
-                <GearIcon />
-              </DropDownItem>
-              <DropDownItem>
-                Logout
-                <ExitIcon />
-              </DropDownItem>
-            </DropdownMenu.Content>
-          </DropdownMenu.Portal>
-        </DropdownMenu.Root>
+              <ul>
+                <PopoverItem>Profile</PopoverItem>
+                <PopoverItem>Settings</PopoverItem>
+                <PopoverItem onPress={() => alert("hu")}>Log out</PopoverItem>
+              </ul>
+            </Popover.Content>
+          </Popover.Portal>
+        </Popover.Root>
       </div>
     </div>
   );
 };
 
-const DropDownItem = ({
-  children,
+const PopoverItem = ({
   ...props
-}: { children: React.ReactNode } & RefAttributes<HTMLDivElement>) => {
+}: { children: React.ReactNode } & AriaButtonProps<"button">) => {
+  let ref = useRef<HTMLLIElement | null>(null);
+  let { buttonProps } = useButton({ elementType: "li", ...props }, ref);
+  let { children } = props;
   return (
-    <DropdownMenu.Item
-      className="py-2 px-2 w-full flex items-center justify-between hover:bg-black hover:bg-opacity-10 rounded-md animate-scaleIn"
-      {...props}
+    <li
+      className="py-2 px-2 w-full flex items-center justify-between hover:bg-white hover:bg-opacity-5 pl-4 font-medium transition"
+      ref={ref}
+      {...buttonProps}
     >
       {children}
-    </DropdownMenu.Item>
+    </li>
   );
 };
